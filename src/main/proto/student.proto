@@ -6,10 +6,24 @@ option java_outer_classname = "StudentProto";
 
 service StudentService{
   rpc CreateStudent(StudentRequest) returns (StudentResponse);
-//  rpc UpdateStudent(StudentRequest) returns (StudentResponse);
-//  rpc DeleteStudent(StudentRequest) returns (StudentResponse);
-//  rpc GetStudent(StudentRequest) returns (StudentResponse);
+  rpc getStudentById(StudentIdRequest) returns (StudentResponse);
+  rpc getAllStudents(Empty) returns (StudentList);
+  rpc deleteStudentById(StudentIdRequest) returns (DeleteStudentResponse);
+  rpc updateStudent(StudentRequest) returns (StudentResponse);
 }
+
+message DeleteStudentResponse{
+  string message=1;
+}
+
+message StudentList{
+  repeated StudentResponse students=1;
+}
+message Empty{}
+message StudentIdRequest{
+  int64 id=1;
+}
+
 
 message StudentRequest{
   int64 id=1;

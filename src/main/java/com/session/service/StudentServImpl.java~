@@ -111,13 +111,5 @@ public class StudentServImpl extends StudentServiceGrpc.StudentServiceImplBase {
                            .setName(student.getName())
                            .setEmail(student.getEmail())
                            .build();
-
-                   responseObserver.onNext(response);
-                   responseObserver.onCompleted();
-               },
-               () -> {
-                   throw new GrpcStudentNotFoundException("Student not found" + request.getId());
-               }
-       );
     }
 }
